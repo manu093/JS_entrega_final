@@ -1,0 +1,210 @@
+/* reset */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
+ul, ol, li{
+    list-style-type: none;
+}
+
+/* Estilos de header */
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #370958;
+    background: radial-gradient(circle, rgba(55, 9, 88, 1) 0%, rgba(35, 5, 56, 1) 50%);
+    padding: 20px;
+}
+
+.logo{
+    height: 8vw;
+}
+
+.buscador{
+    padding: 8px 20px;
+    border: 2px solid #370958;
+    border-radius: 8px;
+
+}
+
+.buscador_button{
+    padding: 8px 20px;
+    border: 2px solid #e963f7;
+    border-radius: 5px;
+    background-color: #e963f7;
+
+}
+
+.buscador_button:hover{
+    background-color: rgb(35, 5, 56);
+    color: beige;
+    padding: 8px 20px;
+    border: 2px solid rgb(119, 141, 79);
+    border-radius: 5px;
+
+
+}
+
+
+.user-nav{
+    display: flex;
+    gap: 15px;
+}
+
+/* MAIN */
+
+main{
+    padding: 40px;
+    background-color: rgb(35, 5, 56);
+}
+
+
+.section-producto{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Formato de producto */
+.producto {
+    background-color: beige;
+    padding: 15px;
+    justify-content: center;
+    border-radius: 8px;
+    text-align: center;
+    width: 22%;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    position: relative; 
+  }
+  
+
+  .producto img {
+    display: block;              
+    margin: 0 auto;             
+    border-radius: 10px;
+    width: 80%;
+    height: auto;                
+  }
+  
+  .producto h2 {
+    color: rgb(0, 0, 0);
+    font-size: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .producto h3 {
+    margin: 5px 10px 20px 10px;
+    font-size: medium;
+  }
+  
+  .producto::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      0deg,
+      transparent,
+      transparent 30%,
+      rgba(0,255,255,0.3)
+    );
+    transform: rotate(-45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+    pointer-events: none; /* evita interferencias */
+  }
+  
+  .producto:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,255,255,0.5);
+    background-color: rgb(0, 0, 0);
+    color: blueviolet;
+  }
+  
+  .producto:hover h2 {
+    color: rgb(234, 172, 255);
+  }
+  
+  .producto:hover::before {
+    opacity: 1;
+    transform: rotate(-45deg) translateY(100%);
+  }
+  
+
+.info, .compra{
+    display: inline-flex;
+    background-color: rgb(35, 5, 56);
+    color: beige;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 8px;
+
+    
+
+}
+.info:hover, .compra:hover{
+    background-color: rgb(150, 17, 17);
+    color: beige;
+}
+.menus{
+    background-color: rgb(35, 5, 56);
+    color: beige;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 8px;
+    
+
+}
+.menus:hover{
+    background-color: rgb(150, 17, 17);
+    color: beige;
+}
+
+
+/* Formato de Comentarios */
+.section-comentario{
+    padding: 10px;
+} 
+
+
+/*****comentario fin*****/
+
+@media (max-width: 480px) {
+    header{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user-nav{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .producto{
+        width: 90%
+    }
+    
+
+    
+}
+
+/* /// prueba de CSS */
+
+
+
+
