@@ -69,7 +69,6 @@ main{
     background-color: rgb(35, 5, 56);
 }
 
-
 .section-producto{
     display: flex;
     justify-content: center;
@@ -127,7 +126,7 @@ main{
     transform: rotate(-45deg);
     transition: all 0.5s ease;
     opacity: 0;
-    pointer-events: none; /* evita interferencias */
+    pointer-events: none; 
   }
   
   .producto:hover {
@@ -145,7 +144,8 @@ main{
     opacity: 1;
     transform: rotate(-45deg) translateY(100%);
   }
-  
+ 
+/***** producto fin*****/
 
 .info, .compra{
     display: inline-flex;
@@ -155,20 +155,22 @@ main{
     border-radius: 8px;
     margin-top: 8px;
 
-    
+/* Formato de botones info y compra */
 
 }
 .info:hover, .compra:hover{
     background-color: rgb(150, 17, 17);
     color: beige;
 }
+
+/* Formato de menus */
+
 .menus{
     background-color: rgb(35, 5, 56);
     color: beige;
     padding: 10px;
     border-radius: 8px;
     margin-top: 8px;
-    
 
 }
 .menus:hover{
@@ -179,7 +181,12 @@ main{
 
 /* Formato de Comentarios */
 .section-comentario{
+    display: flex;
+    justify-content: center;
     padding: 10px;
+    margin-top: 10%;
+
+
 } 
 
 
@@ -199,11 +206,33 @@ main{
         width: 90%
     }
     
-
-    
 }
 
 /* /// prueba de CSS */
+
+.section-comentario2{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card-text{
+    text-align: end;
+
+}
+/* .card-img-top{
+    border-radius: 8px;
+    max-width: 50%;
+    height: auto;
+
+} */
+.row{
+    border-radius: 8px;
+    max-width: 70%;
+    height: auto;
+
+}
 
 
 
