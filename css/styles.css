@@ -152,7 +152,7 @@ main {
         0 120px 120px #240035 inset;
     display: grid;
     margin: 0 auto;
-    max-width: 80%;
+    max-width: 90%;
     padding: 9px 3px;
     text-align: center;
 }
