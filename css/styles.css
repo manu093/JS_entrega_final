@@ -1,7 +1,7 @@
 /*****************************************
  **              RESET CSS              **
  *****************************************/
-* {
+ * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -19,7 +19,6 @@ ul, ol, li {
 /*****************************************
  **                BODY                 **
  *****************************************/
-
 body {
     background-color: #240035 !important;
 }
@@ -27,7 +26,6 @@ body {
 /*****************************************
  **            NAVBAR / HEADER          **
  *****************************************/
-
 header {
     width: 100%;
 }
@@ -44,22 +42,22 @@ header {
 }
 
 .logo {
-    filter: drop-shadow(0 0 8px #d684ff);
     height: 70px;
+    filter: drop-shadow(0 0 8px #d684ff);
 }
 
 .navbar-nav .nav-link {
-    align-items: center;
-    color: #eecbff !important;
     display: flex;
-    font-size: 1.1rem;
-    font-weight: 500;
+    align-items: center;
     gap: 6px;
     margin: 0 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #eecbff !important;
 }
 
 .navbar-nav .nav-link:hover {
-    color: #ffffff !important;
+    color: #fff !important;
     text-shadow: 0 0 10px #ffb7ff;
 }
 
@@ -70,30 +68,29 @@ header {
 }
 
 /******** BUSCADOR ********/
-
 .search-wrapper {
+    display: flex;
     align-items: center;
     background: #4a0072;
     border: 1px solid #d67aff;
     border-radius: 30px;
-    display: flex;
     padding: 8px 18px;
+    width: 250px;
     position: relative;
     transition: all 0.3s ease;
-    width: 250px;
 }
 
 .search-wrapper:focus-within {
-    box-shadow: 0 0 12px rgba(255, 180, 255, 0.7);
     transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255, 180, 255, 0.7);
 }
 
 .search-input {
-    background: transparent;
+    width: 100%;
     border: none;
+    background: transparent;
     color: #fff;
     outline: none;
-    width: 100%;
 }
 
 .search-input::placeholder {
@@ -101,8 +98,8 @@ header {
 }
 
 .search-btn {
-    background: transparent;
     border: none;
+    background: transparent;
     color: #f3d1ff;
     cursor: pointer;
     font-size: 1.1rem;
@@ -113,11 +110,10 @@ header {
 }
 
 .search-btn:hover i {
-    color: #ffffff;
+    color: #fff;
 }
 
 /******** RESPONSIVE NAVBAR ********/
-
 @media (max-width: 991px) {
     .navbar-center {
         justify-content: flex-start;
@@ -125,15 +121,14 @@ header {
     }
 
     .search-wrapper {
-        margin-top: 10px;
         width: 100%;
+        margin-top: 10px;
     }
 }
 
 /*****************************************
  **                MAIN                 **
  *****************************************/
-
 main {
     background: radial-gradient(circle at center, #2b003d 0%, #170020 80%);
     padding: 40px;
@@ -142,52 +137,47 @@ main {
 /*****************************************
  **     SECCIÓN PRESENTACIÓN / SPEEK     **
  *****************************************/
-
 .speek-choco {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 9px 3px;
+    display: grid;
     align-content: center;
+    text-align: center;
     background: #170020;
     border-radius: 70px;
-    box-shadow: 
+    box-shadow:
         0 -120px 120px #240035 inset,
         0 120px 120px #240035 inset;
-    display: grid;
-    margin: 0 auto;
-    max-width: 90%;
-    padding: 9px 3px;
-    text-align: center;
 }
 
 .container-speek {
-    color: #e9caff;
-    line-height: 1.75;
-    margin: auto;
     max-width: 90%;
+    margin: auto;
+    line-height: 1.75;
+    color: #e9caff;
 }
 
-.speek-title {
-    color: #fce2ff;
+.speek-title,
+.speek-title_center {
     font-size: 2.7rem;
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 3px;
+    color: #fce2ff;
     text-shadow: 0 0 25px rgba(255, 170, 255, 0.7);
 }
 
 .speek-title_center {
-    color: #e600ff;
     display: flex;
-    font-size: 2.7rem;
-    font-weight: 700;
     justify-content: center;
-    letter-spacing: 1px;
-    margin-bottom: 3px;
-    text-shadow: 0 0 25px rgba(255, 170, 255, 0.7);
+    color: #e600ff;
 }
 
 .speek-text {
-    color: #eed9ff;
     font-size: 1.22rem;
     margin-bottom: 22px;
+    color: #eed9ff;
 }
 
 .speek-text strong {
@@ -196,25 +186,19 @@ main {
 }
 
 @media (max-width: 768px) {
-    .speek-title {
-        font-size: 2rem;
-    }
-
-    .speek-text {
-        font-size: 1rem;
-    }
+    .speek-title { font-size: 2rem; }
+    .speek-text { font-size: 1rem; }
 }
 
 /*****************************************
  **           TARJETAS PRODUCTO         **
  *****************************************/
-
 .section-producto {
     display: grid;
-    gap: 25px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     justify-items: center;
     padding: 20px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 25px;
 }
 
 @media (max-width: 1200px) {
@@ -225,59 +209,59 @@ main {
 
 .producto {
     background-color: beige;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    overflow: hidden;
     padding: 15px;
-    position: relative;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
     text-align: center;
-    transition: all 0.5s ease;
     width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s;
 }
 
 .producto img {
-    border-radius: 10px;
-    display: block;
+    width: 80%;
     height: auto;
     margin: 0 auto;
-    width: 80%;
+    display: block;
+    border-radius: 10px;
 }
 
 .producto h2 {
-    color: #000;
     font-size: 2rem;
-    position: relative;
+    color: #000;
     z-index: 2;
+    position: relative;
 }
 
 .producto h3 {
+    margin: 5px 10px 20px;
     font-size: medium;
-    margin: 5px 10px 20px 10px;
 }
 
 .producto::before {
-    background: linear-gradient(0deg, transparent, transparent 30%, rgba(0,255,255,0.3));
-    content: '';
-    height: 200%;
-    left: -50%;
-    opacity: 0;
-    pointer-events: none;
+    content: "";
     position: absolute;
     top: -50%;
-    transform: rotate(-45deg);
-    transition: all 0.5s ease;
+    left: -50%;
     width: 200%;
+    height: 200%;
+    opacity: 0;
+    pointer-events: none;
+    background: linear-gradient(0deg, transparent, transparent 30%, rgba(0,255,255,0.3));
+    transform: rotate(-45deg);
+    transition: 0.5s;
 }
 
 .producto:hover {
     background-color: #000;
-    box-shadow: 0 0 20px rgba(0,255,255,0.5);
     color: blueviolet;
     transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,255,255,0.5);
 }
 
 .producto:hover h2 {
-    color: rgb(234, 172, 255);
+    color: #eaacff;
 }
 
 .producto:hover::before {
@@ -288,144 +272,139 @@ main {
 /*****************************************
  **           BOTONES PRODUCTO          **
  *****************************************/
-
-.info, .compra {
-    background-color: rgb(35, 5, 56);
-    border-radius: 8px;
+.info,
+.compra {
+    background: rgb(35, 5, 56);
     color: beige;
-    display: inline-flex;
-    margin-top: 8px;
+    border-radius: 8px;
     padding: 10px;
+    margin-top: 8px;
+    display: inline-flex;
 }
 
-.info:hover, .compra:hover {
-    background-color: rgb(150, 17, 17);
-    color: beige;
+.info:hover,
+.compra:hover {
+    background: rgb(150, 17, 17);
 }
 
 /*****************************************
- **             COMENTARIOS             **
+ **      TARJETAS COMENTARIOS           **
  *****************************************/
-
 .section-comentario,
 .section-comentario2 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
     margin-top: 10%;
     padding: 10px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card {
     background: #2b003d;
     border: none !important;
     border-radius: 12px;
-    color: #000000;
+    color: #000;
 }
 
 .card-footer {
-    background: transparent;
     border: none;
+    background: transparent;
 }
 
 .row {
-    border-radius: 8px;
-    height: auto;
     max-width: 70%;
+    height: auto;
+    border-radius: 8px;
 }
 
 /*****************************************
- **              FOOTER                  **
+ **              FOOTER                 **
  *****************************************/
-
 .footer-custom {
     background: #240035;
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 -5px 25px rgba(255, 180, 255, 0.15);
-    color: #eecbff;
-    margin-bottom: 100px;
-    margin-top: 60px;
     padding: 40px 0;
+    margin: 60px 0 100px;
     text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.25);
+    box-shadow: 0 -5px 25px rgba(255,180,255,0.15);
+    color: #eecbff;
 }
 
 .footer-content {
-    align-items: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 25px;
-}
-
-.footer-text {
-    font-size: 1rem;
-    max-width: 600px;
 }
 
 .footer-logo {
-    filter: drop-shadow(0 0 8px #d684ff);
     height: 200px;
+    filter: drop-shadow(0 0 8px #d684ff);
 }
 
-/* NAVEGACIÓN FOOTER */
+.footer-text {
+    max-width: 600px;
+    font-size: 1rem;
+}
 
 .footer-nav {
     display: flex;
-    flex-wrap: wrap;
     gap: 25px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .footer-nav li a {
-    align-items: center;
+    padding: 8px 14px;
+    font-size: 1.05rem;
     border-radius: 8px;
     color: #eecbff;
     display: flex;
-    font-size: 1.05rem;
     gap: 6px;
-    padding: 8px 14px;
-    transition: all .3s ease;
+    transition: 0.3s;
 }
 
 .footer-nav li a:hover {
     background: #4a0072;
-    box-shadow: 0 0 12px rgba(255, 150, 255, 0.4);
-    color: #ffffff;
+    color: #fff;
+    box-shadow: 0 0 12px rgba(255,150,255,0.4);
 }
 
 /*****************************************
  **          BOTÓN CARRITO FLOAT         **
  *****************************************/
-
 .floating-cart {
-    align-items: center;
-    animation: cartPulse 4s infinite ease-in-out;
-    background: #4a0072;
-    border: 2px solid #d67aff;
-    border-radius: 50%;
-    bottom: 25px;
-    box-shadow:
-        0 0 10px rgba(255, 180, 255, 0.4),
-        0 0 20px rgba(120, 0, 140, 0.5);
-    color: #fce4ff;
-    cursor: pointer;
-    display: flex;
-    font-size: 1.8rem;
-    height: 65px;
-    justify-content: center;
     position: fixed;
+    bottom: 25px;
     right: 25px;
-    transition: all 0.3s ease;
     width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 2px solid #d67aff;
+    background: #4a0072;
+    color: #fce4ff;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
     z-index: 9999;
+
+    box-shadow:
+        0 0 10px rgba(255,180,255,0.4),
+        0 0 20px rgba(120,0,140,0.5);
+
+    animation: cartPulse 4s infinite ease-in-out;
 }
 
 .floating-cart:hover {
-    color: #fff;
     transform: scale(1.12);
+    color: #fff;
     box-shadow:
-        0 0 18px rgba(255, 180, 255, 0.7),
-        0 0 30px rgba(170, 0, 200, 0.7);
+        0 0 18px rgba(255,180,255,0.7),
+        0 0 30px rgba(170,0,200,0.7);
 }
 
 @keyframes cartPulse {
@@ -434,33 +413,66 @@ main {
     100% { transform: scale(1); }
 }
 
-/*****************************************
- **       EFECTO CHOCOLATE DERRETIDO     **
- *****************************************/
+/******** BURBUJA CONTADOR ********/
+.floating-cart::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -6px;
+    right: -6px;
 
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+
+    background: #ff00ff;
+    color: #fff;
+    font-size: .75rem;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 0 8px rgba(255,0,255,0.8);
+
+    opacity: 0;
+    transform: scale(0.5);
+    transition: .2s ease;
+}
+
+.floating-cart[data-count]:not([data-count="0"])::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/*****************************************
+ **       EFECTO CHOCOLATE DERRETIDO    **
+ *****************************************/
 .choco-drip {
-    background: #240035;
+    width: 100%;
     height: 60px;
     overflow: hidden;
+    background: #240035;
     position: relative;
-    width: 100%;
 }
 
 .choco-drip::before {
-    animation: chocoMove 6s infinite ease-in-out;
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 120px;
+    top: -40px;
+    left: 0;
+
     background:
         radial-gradient(circle at 20% 80%, #240035 35%, transparent 36%),
         radial-gradient(circle at 40% 80%, #240035 35%, transparent 36%),
         radial-gradient(circle at 60% 80%, #240035 35%, transparent 36%),
         radial-gradient(circle at 80% 80%, #240035 35%, transparent 36%);
-    background-repeat: repeat-x;
     background-size: 25% 100%;
-    content: "";
-    height: 120px;
-    left: 0;
-    position: absolute;
-    top: -40px;
-    width: 200%;
+    background-repeat: repeat-x;
+
+    animation: chocoMove 6s infinite ease-in-out;
 }
 
 @keyframes chocoMove {
@@ -472,16 +484,194 @@ main {
 /*****************************************
  **               RESPONSIVE            **
  *****************************************/
-
 @media (max-width: 480px) {
     .producto { width: 90%; }
     .footer-nav { gap: 15px; }
 
     .floating-cart {
-        bottom: 18px;
-        font-size: 1.5rem;
-        height: 55px;
-        right: 18px;
         width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+        bottom: 18px;
+        right: 18px;
     }
+}
+
+/*****************************************
+ **           DETALLE PRODUCTO          **
+ *****************************************/
+.detalle-card {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+    background: #170020;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.detalle-card img {
+    width: 300px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+/*****************************************
+ **        CARRITO — ITEM CARD          **
+ *****************************************/
+.carrito-item {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+
+    display: grid;
+    grid-template-columns: 120px 1fr 100px 140px 60px;
+    gap: 20px;
+    align-items: center;
+
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    border-radius: 14px;
+
+    box-shadow: 0 0 15px rgba(255,0,255,0.2);
+}
+
+.carrito-item img {
+    width: 120px;
+    border-radius: 10px;
+}
+
+.carrito-item h3 {
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.carrito-precio {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f8d6ff;
+}
+
+.carrito-controles {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-cantidad {
+    padding: 8px 12px;
+    font-size: 1rem;
+    background: #5d0b99;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-cantidad:hover {
+    background: #7c12cc;
+}
+
+.carrito-eliminar {
+    padding: 12px;
+    background: #ff2a2a;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.carrito-eliminar:hover {
+    background: #cc0000;
+}
+
+/******** RESPONSIVE ********/
+@media (max-width: 768px) {
+    .carrito-item {
+        grid-template-columns: 80px 1fr;
+        grid-template-rows: repeat(4, auto);
+        text-align: center;
+    }
+
+    .carrito-precio,
+    .carrito-controles,
+    .carrito-eliminar {
+        grid-column: 1 / -1;
+        margin: auto;
+    }
+}
+
+/*****************************************
+ **        CONFETI — ANIMACIÓN          **
+ *****************************************/
+.choco-confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    opacity: .9;
+    pointer-events: none;
+    z-index: 999999;
+    animation: confettiFall 1s ease-out forwards;
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(0) scale(1); opacity:1; }
+    80% { opacity:1; }
+    100% { transform: translateY(40px) scale(0.5); opacity:0; }
+}
+
+/*****************************************
+ **         TOAST – Aviso suave         **
+ *****************************************/
+.toast-choco {
+    position: fixed;
+    bottom: 110px;
+    right: 30px;
+    padding: 12px 20px;
+
+    background: #4a0072;
+    color: #ffe6ff;
+
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: .35s;
+
+    box-shadow:
+        0 0 12px rgba(255,150,255,0.5),
+        0 0 25px rgba(160,0,180,0.5);
+
+    pointer-events: none;
+    z-index: 99999;
+}
+
+.toast-choco.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*****************************************
+ **      TOTAL DEL CARRITO (💰)         **
+ *****************************************/
+.carrito-total {
+    max-width: 900px;
+    margin: 25px auto 60px;
+    padding: 18px 25px;
+
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: right;
+
+    color: #ffb6ff;
+
+    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
+    box-shadow: 0 0 18px rgba(255,0,255,0.20);
+
+    backdrop-filter: blur(3px);
 }

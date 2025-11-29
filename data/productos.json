@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "title": "Cherry di bomb",
+        "price": 500,
+        "image": "./img/cherry.png",
+        "desc": "Relleno suave de cereza con un toque licoroso, cubierto de chocolate oscuro."
+    },
+    {
+        "id": 2,
+        "title": "Naranja verano",
+        "price": 550,
+        "image": "./img/orange.png",
+        "desc": "Bombón fresco con crema de naranja natural, ideal para días cálidos."
+    },
+    {
+        "id": 3,
+        "title": "Deseo de frutilla",
+        "price": 600,
+        "image": "./img/frutilla2.png",
+        "desc": "Corazón cremoso de frutilla y baño de chocolate con leche."
+    },
+    {
+        "id": 4,
+        "title": "Higo de la abuela",
+        "price": 500,
+        "image": "./img/higo.png",
+        "desc": "Receta tradicional con higos seleccionados y chocolate intenso."
+    },
+    {
+        "id": 5,
+        "title": "Alma de nuez",
+        "price": 800,
+        "image": "./img/nues.png",
+        "desc": "Bombón premium de pasta de nuez tostada y chocolate semiamargo."
+    },
+    {
+        "id": 6,
+        "title": "Choco ganache",
+        "price": 850,
+        "image": "./img/ganache.png",
+        "desc": "Suave ganache artesanal con cobertura de chocolate belga."
+    },
+    {
+        "id": 7,
+        "title": "Maracuyá de la selva",
+        "price": 850,
+        "image": "./img/maracuya.png",
+        "desc": "Relleno vibrante de maracuyá tropical con baño crocante."
+    },
+    {
+        "id": 8,
+        "title": "Coffee Cream",
+        "price": 850,
+        "image": "./img/creme.png",
+        "desc": "Cremoso sabor a café intenso con un toque dulce y final suave."
+    }
+]
