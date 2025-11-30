@@ -113,19 +113,6 @@ header {
     color: #fff;
 }
 
-/******** RESPONSIVE NAVBAR ********/
-@media (max-width: 991px) {
-    .navbar-center {
-        justify-content: flex-start;
-        margin-top: 15px;
-    }
-
-    .search-wrapper {
-        width: 100%;
-        margin-top: 10px;
-    }
-}
-
 /*****************************************
  **                MAIN                 **
  *****************************************/
@@ -186,12 +173,6 @@ main {
     text-shadow: 0 0 12px rgba(255, 150, 255, 0.7);
 }
 
-@media (max-width: 768px) {
-    .speek-title { font-size: 2rem; }
-    .speek-text { font-size: 1rem; }
-    .speek-title_center{text-align: center;}
-}
-
 /*****************************************
  **           TARJETAS PRODUCTO         **
  *****************************************/
@@ -201,12 +182,6 @@ main {
     justify-items: center;
     padding: 20px;
     gap: 25px;
-}
-
-@media (max-width: 1200px) {
-    .section-producto {
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    }
 }
 
 .producto {
@@ -485,22 +460,6 @@ main {
 }
 
 /*****************************************
- **               RESPONSIVE            **
- *****************************************/
-@media (max-width: 480px) {
-    .producto { width: 90%; }
-    .footer-nav { gap: 15px; }
-
-    .floating-cart {
-        width: 55px;
-        height: 55px;
-        font-size: 1.5rem;
-        bottom: 18px;
-        right: 18px;
-    }
-}
-
-/*****************************************
  **           DETALLE PRODUCTO          **
  *****************************************/
 .detalle-card {
@@ -588,22 +547,6 @@ main {
     background: #cc0000;
 }
 
-/******** RESPONSIVE ********/
-@media (max-width: 768px) {
-    .carrito-item {
-        grid-template-columns: 80px 1fr;
-        grid-template-rows: repeat(4, auto);
-        text-align: center;
-    }
-
-    .carrito-precio,
-    .carrito-controles,
-    .carrito-eliminar {
-        grid-column: 1 / -1;
-        margin: auto;
-    }
-}
-
 /*****************************************
  **        CONFETI — ANIMACIÓN          **
  *****************************************/
@@ -679,91 +622,10 @@ main {
     backdrop-filter: blur(3px);
 }
 
-
-/* ============================================================
-   🟣 CARRITO — VERSIÓN OPTIMIZADA PARA CELULAR
-   ============================================================ */
-   @media (max-width: 768px) {
-
-    /* Contenedor del item */
-    .carrito-item {
-        grid-template-columns: 80px 1fr;
-        grid-template-rows: auto auto auto auto;
-        gap: 10px;
-
-        max-width: 100%;
-        margin: 15px auto;
-        padding: 15px 12px;
-
-        border-radius: 16px;
-        background: rgba(255,255,255,0.06);
-    }
-
-    /* Imagen */
-    .carrito-item img {
-        width: 80px;
-        border-radius: 10px;
-        object-fit: contain;
-        justify-self: center;
-        margin: auto;
-    }
-
-    /* Título */
-    .carrito-item h3 {
-        font-size: 1.1rem;
-        text-align: left;
-        margin-top: 5px;
-    }
-
-    /* Precio */
-    .carrito-precio {
-        font-size: 1.1rem;
-        margin-top: -6px;
-        color: #ffbffd;
-    }
-
-    /* Controles de cantidad */
-    .carrito-controles {
-        grid-column: 1 / -1;
-        justify-content: center;
-        margin-top: 5px;
-    }
-
-    .btn-cantidad {
-        padding: 8px 12px;
-        font-size: 1rem;
-        border-radius: 10px;
-    }
-
-    /* Botón eliminar */
-    .carrito-eliminar {
-        grid-column: 1 / -1;
-        margin: 5px auto 0;
-        width: 55px;
-        height: 55px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-/* ============================================================
-   🟣 Ajuste del total
-   ============================================================ */
-@media (max-width: 768px) {
-    .carrito-total {
-        text-align: center;
-        font-size: 1.6rem;
-        padding: 15px;
-        margin-top: 30px;
-    }
-}
-
-
 /* ===============================
    LOGIN / REGISTER FORMS
    =============================== */
-   .auth-box {
+.auth-box {
     max-width: 420px;
     margin: 60px auto;
     padding: 30px;
@@ -858,75 +720,74 @@ main {
 /******************************
  **  CONTACTO — ESTILOS      **
  ******************************/
-
- .contacto-wrapper {
+.contacto-wrapper {
     max-width: 900px;
     margin: 40px auto;
     padding: 20px;
-  }
-  
-  .contacto-descrip {
+}
+
+.contacto-descrip {
     text-align: center;
     color: #eecbff;
     font-size: 1.2rem;
     margin-bottom: 30px;
-  }
-  
-  /* === INFO BOXES === */
-  .contacto-info {
+}
+
+/* === INFO BOXES === */
+.contacto-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 25px;
     margin-bottom: 40px;
-  }
-  
-  .info-box {
+}
+
+.info-box {
     background: rgba(255, 255, 255, 0.06);
     padding: 20px;
     border-radius: 14px;
     text-align: center;
     box-shadow: 0 0 12px rgba(255, 0, 255, 0.1);
     transition: 0.3s;
-  }
-  
-  .info-box i {
+}
+
+.info-box i {
     font-size: 2rem;
     color: #ffb6ff;
     margin-bottom: 10px;
-  }
-  
-  .info-box h3 {
+}
+
+.info-box h3 {
     color: #ffdfff;
     margin-bottom: 5px;
     font-size: 1.2rem;
-  }
-  
-  .info-box p {
+}
+
+.info-box p {
     color: #e4c9ff;
     font-size: 1rem;
-  }
-  
-  .info-box:hover {
+}
+
+.info-box:hover {
     transform: scale(1.05);
     box-shadow: 0 0 18px rgba(255, 0, 255, 0.3);
-  }
-  
-  /* === FORMULARIO === */
-  .contacto-form {
+}
+
+/* === FORMULARIO === */
+.contacto-form {
     background: rgba(255, 255, 255, 0.06);
     padding: 25px;
     border-radius: 14px;
     text-align: center;
     box-shadow: 0 0 18px rgba(255, 0, 255, 0.15);
-  }
-  
-  .contacto-form h3 {
+}
+
+.contacto-form h3 {
     color: #ffcbff;
     margin-bottom: 15px;
-  }
-  
-  .contacto-form input,
-  .contacto-form textarea {
+}
+
+.contacto-form input,
+.contacto-form textarea {
     width: 100%;
     margin-bottom: 15px;
     padding: 12px;
@@ -935,43 +796,186 @@ main {
     outline: none;
     background: #3b004e;
     color: #fff;
-  }
-  
-  .contacto-form input::placeholder,
-  .contacto-form textarea::placeholder {
+}
+
+.contacto-form input::placeholder,
+.contacto-form textarea::placeholder {
     color: #ddc0ff;
-  }
-  
-  .enviar-form {
+}
+
+.enviar-form {
     width: 100%;
     margin-top: 8px;
     background-color: #4a0072;
-  }
-  
-  .enviar-form:hover {
-    background-color: #8d00c6;
-  }
-  
-  #imagenPerro img {
-    width: 20%;   /* el tamaño que quieras */
-    height: 90%;
-    padding-right: 1%;
-    object-fit: cover;  /* recorta proporcional */
-    border-radius: 10px; /* opcional */
-  }
-  
+}
 
-  .contenedorPerro{
-    display: flex;
-    justify-content: center;
-  }
-  #imagenPerro1 img {
-    display: flex;
-    justify-content: center;
-    width: 20%;   /* el tamaño que quieras */
+.enviar-form:hover {
+    background-color: #8d00c6;
+}
+
+/* Perros */
+#imagenPerro img {
+    width: 20%;
     height: 90%;
     padding-right: 1%;
-    object-fit: cover;  /* recorta proporcional */
-    border-radius: 10px; /* opcional */
-  }
-  
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.contenedorPerro {
+    display: flex;
+    justify-content: center;
+}
+
+#imagenPerro1 img {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    height: 90%;
+    padding-right: 1%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* ============================================================
+   🔻 TODAS LAS MEDIA QUERIES JUNTAS
+   ============================================================ */
+
+/******** RESPONSIVE NAVBAR ********/
+@media (max-width: 991px) {
+    .navbar-center {
+        justify-content: flex-start;
+        margin-top: 15px;
+    }
+
+    .search-wrapper {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* SPEEK */
+@media (max-width: 768px) {
+    .speek-title { font-size: 2rem; }
+    .speek-text { font-size: 1rem; }
+    .speek-title_center { text-align: center; }
+}
+
+/* PRODUCTOS GRID */
+@media (max-width: 1200px) {
+    .section-producto {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+}
+
+/*****************************************
+ **               RESPONSIVE 480         **
+ *****************************************/
+@media (max-width: 480px) {
+    .producto { width: 90%; }
+    .footer-nav { gap: 15px; }
+
+    .floating-cart {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+        bottom: 18px;
+        right: 18px;
+    }
+}
+
+/******** RESPONSIVE CARRITO SIMPLE ********/
+@media (max-width: 768px) {
+    .carrito-item {
+        grid-template-columns: 80px 1fr;
+        grid-template-rows: repeat(4, auto);
+        text-align: center;
+    }
+
+    .carrito-precio,
+    .carrito-controles,
+    .carrito-eliminar {
+        grid-column: 1 / -1;
+        margin: auto;
+    }
+}
+
+/* ============================================================
+   🟣 CARRITO — VERSIÓN OPTIMIZADA PARA CELULAR
+   (se declara después para pisar lo necesario)
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* Contenedor del item */
+    .carrito-item {
+        grid-template-columns: 80px 1fr;
+        grid-template-rows: auto auto auto auto;
+        gap: 10px;
+
+        max-width: 100%;
+        margin: 15px auto;
+        padding: 15px 12px;
+
+        border-radius: 16px;
+        background: rgba(255,255,255,0.06);
+    }
+
+    /* Imagen */
+    .carrito-item img {
+        width: 80px;
+        border-radius: 10px;
+        object-fit: contain;
+        justify-self: center;
+        margin: auto;
+    }
+
+    /* Título */
+    .carrito-item h3 {
+        font-size: 1.1rem;
+        text-align: left;
+        margin-top: 5px;
+    }
+
+    /* Precio */
+    .carrito-precio {
+        font-size: 1.1rem;
+        margin-top: -6px;
+        color: #ffbffd;
+    }
+
+    /* Controles de cantidad */
+    .carrito-controles {
+        grid-column: 1 / -1;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .btn-cantidad {
+        padding: 8px 12px;
+        font-size: 1rem;
+        border-radius: 10px;
+    }
+
+    /* Botón eliminar */
+    .carrito-eliminar {
+        grid-column: 1 / -1;
+        margin: 5px auto 0;
+        width: 55px;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* ============================================================
+   🟣 Ajuste del total (carrito)
+   ============================================================ */
+@media (max-width: 768px) {
+    .carrito-total {
+        text-align: center;
+        font-size: 1.6rem;
+        padding: 15px;
+        margin-top: 30px;
+    }
+}

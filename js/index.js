@@ -1,45 +1,71 @@
 /* ============================================================
-   SISTEMA UNIFICADO DE PRODUCTOS + DETALLE + CARRITO
+   SISTEMA UNIFICADO DE PRODUCTOS, DETALLE Y CARRITO
+   ------------------------------------------------------------
+   - Maneja la carga del JSON de productos
+   - Renderiza productos en el index
+   - Renderiza el detalle
+   - Controla carrito (agregar, eliminar, modificar)
+   - Controla contador del carrito
+   - Efectos visuales (confeti + toast)
+   - Buscador
+   - Login y Registro (localStorage)
+   - Navbar dinámico
+   - Includes HTML (header/footer)
    ============================================================ */
 
    document.addEventListener("DOMContentLoaded", () => {
-    actualizarContadorCarrito();
-    detectarPagina();
+    actualizarContadorCarrito(); // Actualiza burbuja del carrito
+    detectarPagina();            // Determina qué función ejecutar según la URL
 });
 
-/*  CARGAR JSON UNA SOLA VEZ (CACHE) = */
+/* ============================================================
+    CACHE DE PRODUCTOS — Para no cargar el JSON cada vez
+   ============================================================ */
+
 let productosCache = null;
 
 async function obtenerProductos() {
+    // Si ya hay productos cargados → devolverlos
     if (productosCache) return productosCache;
 
+    // Cargar JSON desde /data una sola vez
     const res = await fetch("./data/productos.json");
     productosCache = await res.json();
     return productosCache;
 }
 
-/*   DETECTAR EN QUÉ PÁGINA ESTOY */
+/* ============================================================
+   DETECTAR EN QUÉ PÁGINA ESTOY
+   Carga solo lo necesario en cada vista.
+   ============================================================ */
+
 function detectarPagina() {
     const url = window.location.pathname;
 
+    // Página principal
     if (url.includes("index.html") || url.endsWith("/")) {
         cargarProductos();
     }
 
+    // Página detalle
     if (url.includes("detalle.html")) {
         cargarDetalle();
     }
-    
 
+    // Página carrito
     if (url.includes("carrito.html")) {
         mostrarCarrito();
     }
+
+    // Página de búsqueda
     if (url.includes("search-results.html")) {
         cargarResultados();
     }
 }
 
-/*  CARGAR PRODUCTOS (INDEX) */
+/* ============================================================
+   CARGAR PRODUCTOS EN EL INDEX
+   ============================================================ */
 
 async function cargarProductos() {
     const data = await obtenerProductos();
@@ -53,7 +79,9 @@ async function cargarProductos() {
                 <img src="${prod.image}" alt="${prod.title}">
                 <p>${prod.desc}</p>
                 <h3>$${prod.price}</h3>
-                <a href="./detalle.html?id=${prod.id}" class="info">Más info</a>    
+
+                <a href="./detalle.html?id=${prod.id}" class="info">Más info</a>
+
                 <button class="compra" onclick="agregarAlCarrito(${prod.id})">
                     Comprar
                 </button>
@@ -62,7 +90,10 @@ async function cargarProductos() {
     });
 }
 
-/*  AGREGAR AL CARRITO */
+/* ============================================================
+   AGREGAR PRODUCTO AL CARRITO
+   ============================================================ */
+
 async function agregarAlCarrito(id) {
     const data = await obtenerProductos();
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -70,9 +101,11 @@ async function agregarAlCarrito(id) {
     const producto = data.find(p => p.id === id);
     const encontrado = carrito.find(item => item.id === id);
 
+    // Si ya existe → sumar cantidad
     if (encontrado) {
         encontrado.cantidad++;
     } else {
+        // Si no existe → agregar
         carrito.push({
             id: producto.id,
             titulo: producto.title,
@@ -82,14 +115,18 @@ async function agregarAlCarrito(id) {
         });
     }
 
+    // Guardar carrito actualizado
     localStorage.setItem("carrito", JSON.stringify(carrito));
     actualizarContadorCarrito();
 
+    // Efectos visuales
     lanzarConfetiChocolate();
     mostrarToast(`"${producto.title}" agregado al carrito`);
 }
 
-/*  CONTADOR DEL CARRITO */
+/* ============================================================
+    CONTADOR DEL CARRITO (BURBUJA FLOTANTE)
+   ============================================================ */
 
 function actualizarContadorCarrito() {
     const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -99,14 +136,16 @@ function actualizarContadorCarrito() {
     if (cartBtn) cartBtn.setAttribute("data-count", total);
 }
 
-/*  CARGAR DETALLE DEL PRODUCTO */
+/* ============================================================
+    CARGAR DETALLE DEL PRODUCTO
+   ============================================================ */
+
 async function cargarDetalle() {
     const cont = document.querySelector("#detalle-container");
     if (!cont) return;
 
     const id = Number(new URLSearchParams(window.location.search).get("id"));
     const data = await obtenerProductos();
-
     const producto = data.find(p => p.id === id);
 
     cont.innerHTML = `
@@ -125,10 +164,13 @@ async function cargarDetalle() {
     `;
 }
 
-/*  MOSTRAR CARRITO COMPLETO  */
+/* ============================================================
+   MOSTRAR CARRITO EN /carrito.html
+   ============================================================ */
+
 function mostrarCarrito() {
     const cont = document.querySelector("#carrito-container");
-    const totalBox = document.querySelector(".carrito-total"); // CORREGIDO
+    const totalBox = document.querySelector(".carrito-total");
 
     if (!cont) return;
 
@@ -150,7 +192,6 @@ function mostrarCarrito() {
             <div class="carrito-item">
 
                 <img src="${item.imagen}" alt="${item.titulo}">
-
                 <h3>${item.titulo}</h3>
 
                 <div class="carrito-precio">$${item.precio}</div>
@@ -164,29 +205,33 @@ function mostrarCarrito() {
                 <button class="carrito-eliminar" onclick="eliminar(${item.id})">🗑️</button>
 
             </div>
-            
         `;
-        
     });
 
     totalBox.textContent = `Total: $${total}`;
 }
 
-/* CAMBIAR CANTIDAD */
+/* ============================================================
+   CAMBIAR CANTIDAD (+ / -)
+   ============================================================ */
 
 function cambiarCantidad(id, cambio) {
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     const item = carrito.find(p => p.id === id);
 
     item.cantidad += cambio;
-    if (item.cantidad <= 0) carrito = carrito.filter(p => p.id !== id);
+
+    if (item.cantidad <= 0)
+        carrito = carrito.filter(p => p.id !== id);
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
     mostrarCarrito();
     actualizarContadorCarrito();
 }
 
-/*  ELIMINAR PRODUCTO  */
+/* ============================================================
+   ELIMINAR PRODUCTO DEL CARRITO
+   ============================================================ */
 
 function eliminar(id) {
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -197,7 +242,9 @@ function eliminar(id) {
     actualizarContadorCarrito();
 }
 
-/* CONFETI  */
+/* ============================================================
+   EFECTO DE CONFETI DE CHOCOLATE
+   ============================================================ */
 
 function lanzarConfetiChocolate() {
     const cart = document.querySelector(".floating-cart");
@@ -211,15 +258,16 @@ function lanzarConfetiChocolate() {
         const confeti = document.createElement("div");
         confeti.classList.add("choco-confetti");
 
+        // Colores simulando chocolate
         const colores = ["#4e2e12", "#8b5a2b", "#d9c2a3", "#613318", "#c69c6d"];
-        confeti.style.backgroundColor = colores[Math.random() * colores.length | 0];
+        confeti.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
 
         confeti.style.left = `${centerX}px`;
         confeti.style.top = `${centerY}px`;
 
+        // Movimiento aleatorio
         const angle = (Math.random() * 2 - 1) * 50;
         const distance = Math.random() * 80 + 40;
-
         confeti.style.transform = `translate(${angle}px, ${distance}px)`;
 
         document.body.appendChild(confeti);
@@ -228,7 +276,9 @@ function lanzarConfetiChocolate() {
     }
 }
 
-/*  TOAST */
+/* ============================================================
+   TOAST "Agregado al carrito"
+   ============================================================ */
 
 function mostrarToast(mensaje) {
     const toast = document.getElementById("toast-choco");
@@ -238,57 +288,54 @@ function mostrarToast(mensaje) {
     setTimeout(() => toast.classList.remove("show"), 2000);
 }
 
-
 /* ============================================================
-   🔎 BUSCADOR — Mostrar resultados
+   BUSCADOR — Mostrar resultados
    ============================================================ */
-   function cargarResultados() {
+
+function cargarResultados() {
     const cont = document.querySelector("#resultados-container");
-    if (!cont) return; // No estoy en search-results.html
+    if (!cont) return; // Si no estoy en search-results, no hago nada
 
     const params = new URLSearchParams(window.location.search);
     const busqueda = params.get("buscar")?.toLowerCase() || "";
 
     fetch("./data/productos.json")
-    .then(res => res.json())
-    .then(data => {
+        .then(res => res.json())
+        .then(data => {
+            const resultados = data.filter(p =>
+                p.title.toLowerCase().includes(busqueda) ||
+                p.desc.toLowerCase().includes(busqueda)
+            );
 
-        const resultados = data.filter(p =>
-            p.title.toLowerCase().includes(busqueda) ||
-            p.desc.toLowerCase().includes(busqueda)
-        );
+            if (resultados.length === 0) {
+                cont.innerHTML = `<p>No hay resultados para "<strong>${busqueda}</strong>".</p>`;
+                return;
+            }
 
-        if (resultados.length === 0) {
-            cont.innerHTML = `<p>No hay resultados para "<strong>${busqueda}</strong>".</p>`;
-            return;
-        }
+            cont.innerHTML = "";
 
-        cont.innerHTML = "";
+            resultados.forEach(prod => {
+                cont.innerHTML += `
+                    <article class="carrito-item">
+                        <h2>${prod.title}</h2>
+                        <img src="${prod.image}" alt="${prod.title}">
+                        <p>${prod.desc}</p>
+                        <h3>$${prod.price}</h3>
 
-        resultados.forEach(prod => {
-            cont.innerHTML += `
-                <article class="carrito-item">
-                    <h2>${prod.title}</h2>
-                    <img src="${prod.image}" alt="${prod.title}">
-                    <p>${prod.desc}</p>
-                    <h3>$${prod.price}</h3>
-
-                    <a href="./detalle.html?id=${prod.id}" class="info">Más info</a>
-                    <button class="compra" onclick="agregarAlCarrito(${prod.id})">Comprar</button>
-                </article>
-            `;
+                        <a href="./detalle.html?id=${prod.id}" class="info">Más info</a>
+                        <button class="compra" onclick="agregarAlCarrito(${prod.id})">
+                            Comprar
+                        </button>
+                    </article>
+                `;
+            });
         });
-    });
 }
 
-
-//  Logueo y register
-
 /* ============================================================
-   SISTEMA DE LOGIN / REGISTER (localStorage)
+   LOGIN / REGISTER (localStorage)
    ============================================================ */
 
-/* ============= REGISTRAR ============= */
 function registrarUsuario() {
     const nombre = document.getElementById("reg-nombre").value.trim();
     const email = document.getElementById("reg-email").value.trim();
@@ -299,80 +346,72 @@ function registrarUsuario() {
         return;
     }
 
+    // Guardar usuario
     const usuario = { nombre, email, pass };
-
-    // Guardamos usuario
     localStorage.setItem("usuario_registrado", JSON.stringify(usuario));
 
     mostrarExito("Cuenta creada ✔");
 
-    setTimeout(() => {
-        window.location.href = "./login.html";
-    }, 1500);
+    setTimeout(() => window.location.href = "./login.html", 1500);
 }
 
-/* ============= LOGIN ============= */
 function loginUsuario() {
     const email = document.getElementById("login-email").value.trim();
     const pass = document.getElementById("login-pass").value.trim();
 
     const registrado = JSON.parse(localStorage.getItem("usuario_registrado"));
 
-    if (!registrado) {
-        mostrarError("No hay usuarios registrados.");
-        return;
-    }
+    if (!registrado) return mostrarError("No hay usuarios registrados.");
 
     if (registrado.email !== email || registrado.pass !== pass) {
         mostrarError("Datos incorrectos ❌");
         return;
     }
 
-    // Guardamos el usuario logueado
+    // Guardar sesión
     localStorage.setItem("usuario_logueado", registrado.nombre);
 
     mostrarExito("Bienvenido/a " + registrado.nombre + " 🍫");
 
-    setTimeout(() => {
-        window.location.href = "./index.html";
-    }, 1500);
+    setTimeout(() => window.location.href = "./index.html", 1500);
 }
 
-/* ============= CERRAR SESIÓN ============= */
 function logout() {
     localStorage.removeItem("usuario_logueado");
     window.location.href = "./index.html";
 }
 
-/* ============= Mostrar usuario en navbar ============= */
+/* ============================================================
+   MOSTRAR USUARIO EN NAVBAR (si está logueado)
+   ============================================================ */
+
 document.addEventListener("DOMContentLoaded", () => {
     const user = localStorage.getItem("usuario_logueado");
     const userBox = document.getElementById("usuario-navbar");
 
-    if (userBox) {
-        if (user) {
-            userBox.innerHTML = `
-                <span class="nav-user">Hola, ${user} 🍫</span>
-                <button onclick="logout()" class="logout-btn">Salir</button>
-            `;
-        } else {
-            userBox.innerHTML = `
-               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    if (!userBox) return;
+
+    if (user) {
+        userBox.innerHTML = `
+            <span class="nav-user">Hola, ${user} 🍫</span>
+            <button onclick="logout()" class="logout-btn">Salir</button>
+        `;
+    } else {
+        userBox.innerHTML = `
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <a href="./login.html" class="menus nav-link">
                     <i class="fa-solid fa-right-to-bracket"></i> Loguear
                 </a>
                 <a href="./register.html" class="menus nav-link">
                     <i class="fa-solid fa-user-plus"></i> Registrarse
                 </a>
-              </ul>
-            `;
-        }
+            </ul>
+        `;
     }
 });
 
-
 /* ============================================================
-   TOASTS — errores y éxitos
+   TOASTS PERSONALIZADOS (errores / éxitos)
    ============================================================ */
 
 function mostrarError(msg) {
@@ -385,65 +424,21 @@ function mostrarExito(msg) {
 
 function showToast(msg, tipo) {
     const toast = document.createElement("div");
-
     toast.className = "toast-auth " + tipo;
     toast.textContent = msg;
 
     document.body.appendChild(toast);
 
     setTimeout(() => toast.classList.add("show"), 50);
-
     setTimeout(() => {
         toast.classList.remove("show");
         setTimeout(() => toast.remove(), 300);
     }, 2000);
 }
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    actualizarContadorCarrito();
-    detectarPagina();
-    actualizarNavbarUsuario();
-});
-
 /* ============================================================
-   🟣 CONTROL DEL LOGIN / ESTADO DEL USUARIO
+   INCLUDES HTML (HEADER / FOOTER)
    ============================================================ */
-function actualizarNavbarUsuario() {
-    const user = JSON.parse(localStorage.getItem("usuario"));
-    const div = document.getElementById("usuario-navbar");
-
-    const loginLink = document.getElementById("nav-login");
-    const registerLink = document.getElementById("nav-register");
-
-    if (!div) return;
-
-    if (user) {
-        // Ocultar login y registro
-        loginLink.style.display = "none";
-        registerLink.style.display = "none";
-
-        // Mostrar usuario y logout
-        div.innerHTML = `
-            <span class="navbar-usuario">
-                <i class="fa-solid fa-user"></i> Hola, ${user.nombre}
-            </span>
-            <button class="btn btn-sm btn-outline-light ms-3" onclick="cerrarSesion()">
-                Cerrar sesión
-            </button>
-        `;
-    } else {
-        // Mostrar login/registro
-        loginLink.style.display = "block";
-        registerLink.style.display = "block";
-        div.innerHTML = ""; // No mostrar nada más
-    }
-}
-
-function cerrarSesion() {
-    localStorage.removeItem("usuario");
-    location.reload(); // refresca la página
-}
 
 document.addEventListener("DOMContentLoaded", () => {
     incluirPartes();
@@ -462,35 +457,35 @@ function incluirPartes() {
     });
 }
 
+/* ============================================================
+   🐶 API DE PERROS 
+   ============================================================ */
 
 const contenedor = document.querySelector('#imagenPerro');
-
-fetch("https://dog.ceo/api/breeds/image/random/4")
-  .then(res => res.json())
-  .then(data => {
-    data.message.forEach(perro => {
-      contenedor.innerHTML += `<img src="${perro}" />`;
-    });
-  })
-  .catch(err => console.log(err));
-
-
-const contenedor1 = document.querySelector('#imagenPerro1')
-
-fetch("https://dog.ceo/api/breeds/image/random")
-
-.then(res => res.json())
-.then(data => {
-    contenedor1.innerHTML = `
-    <div class="container-speek">
-    <p class="speek-text">
-    Por cada compra, un 10% del dinero va 
-    destinado a ayudar a perros como el 🐶 
-    </p>
-    </div>
-    <div class="contenedorPerro">
-    <img src ="${data.message}"/>
-    </div>`
+if (contenedor) {
+    fetch("https://dog.ceo/api/breeds/image/random/4")
+        .then(res => res.json())
+        .then(data => {
+            data.message.forEach(perro => {
+                contenedor.innerHTML += `<img src="${perro}" />`;
+            });
+        })
+        .catch(err => console.log(err));
 }
-)
-.catch(err => err)
+
+const contenedor1 = document.querySelector('#imagenPerro1');
+fetch("https://dog.ceo/api/breeds/image/random")
+    .then(res => res.json())
+    .then(data => {
+        contenedor1.innerHTML = `
+            <div class="container-speek">
+                <p class="speek-text">
+                    Por cada compra, un 10% del dinero va 
+                    destinado a ayudar a perros como el 🐶 
+                </p>
+            </div>
+            <div class="contenedorPerro">
+                <img src ="${data.message}"/>
+            </div>`;
+    })
+    .catch(err => err);
