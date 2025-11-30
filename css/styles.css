@@ -138,7 +138,7 @@ main {
  **     SECCIÓN PRESENTACIÓN / SPEEK     **
  *****************************************/
 .speek-choco {
-    max-width: 100%;
+    max-width: 90%;
     margin: 0 auto;
     padding: 9px 3px;
     display: grid;
@@ -176,6 +176,7 @@ main {
 
 .speek-text {
     font-size: 1.22rem;
+    text-align: center;
     margin-bottom: 22px;
     color: #eed9ff;
 }
@@ -186,13 +187,9 @@ main {
 }
 
 @media (max-width: 768px) {
-    
     .speek-title { font-size: 2rem; }
     .speek-text { font-size: 1rem; }
     .speek-title_center{text-align: center;}
-    main {
-        padding: 10px;
-    }
 }
 
 /*****************************************
@@ -953,5 +950,28 @@ main {
   
   .enviar-form:hover {
     background-color: #8d00c6;
+  }
+  
+  #imagenPerro img {
+    width: 20%;   /* el tamaño que quieras */
+    height: 90%;
+    padding-right: 1%;
+    object-fit: cover;  /* recorta proporcional */
+    border-radius: 10px; /* opcional */
+  }
+  
+
+  .contenedorPerro{
+    display: flex;
+    justify-content: center;
+  }
+  #imagenPerro1 img {
+    display: flex;
+    justify-content: center;
+    width: 20%;   /* el tamaño que quieras */
+    height: 90%;
+    padding-right: 1%;
+    object-fit: cover;  /* recorta proporcional */
+    border-radius: 10px; /* opcional */
   }
   

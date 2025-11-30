@@ -164,7 +164,9 @@ function mostrarCarrito() {
                 <button class="carrito-eliminar" onclick="eliminar(${item.id})">🗑️</button>
 
             </div>
+            
         `;
+        
     });
 
     totalBox.textContent = `Total: $${total}`;
@@ -459,3 +461,36 @@ function incluirPartes() {
         }
     });
 }
+
+
+const contenedor = document.querySelector('#imagenPerro');
+
+fetch("https://dog.ceo/api/breeds/image/random/4")
+  .then(res => res.json())
+  .then(data => {
+    data.message.forEach(perro => {
+      contenedor.innerHTML += `<img src="${perro}" />`;
+    });
+  })
+  .catch(err => console.log(err));
+
+
+const contenedor1 = document.querySelector('#imagenPerro1')
+
+fetch("https://dog.ceo/api/breeds/image/random")
+
+.then(res => res.json())
+.then(data => {
+    contenedor1.innerHTML = `
+    <div class="container-speek">
+    <p class="speek-text">
+    Por cada compra, un 10% del dinero va 
+    destinado a ayudar a perros como el 🐶 
+    </p>
+    </div>
+    <div class="contenedorPerro">
+    <img src ="${data.message}"/>
+    </div>`
+}
+)
+.catch(err => err)
