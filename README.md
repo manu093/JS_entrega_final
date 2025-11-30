@@ -1,10 +1,5 @@
 🌟 Proyecto Final del Curso de JavaScript
 
-🚧 Estado: En desarrollo
-
-
-
-
 
 
 📝 Descripción del proyecto
@@ -36,6 +31,8 @@ Se irán incorporando nuevas funciones, mejoras de diseño e integración con se
 💡 Contribuciones
 
 Por ahora es un proyecto personal de práctica, pero más adelante se podrán abrir issues o pull requests para mejoras.
+Se agragaron cosas en base a investigacion, como el login con datos de localstorage, optimizaciones que fui encontrado y efectos que encontre de la web.
+tambien como queria usar mis propios productos, simule consumo de api con elementos locales. 
 
 📄 Licencia
 
