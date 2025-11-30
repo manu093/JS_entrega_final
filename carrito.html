@@ -27,91 +27,7 @@
 <body>
 
     <!-- ===================== HEADER ===================== -->
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-        <div class="container">
-
-          <!-- LOGO PARA MOBILE -->
-          <a class="navbar-brand d-lg-none" href="#">
-            <img src="img/logo4.png" class="logo" alt="logo" />
-          </a>
-
-          <!-- LOGO SOLO EN DESKTOP (CENTRADO) -->
-          <div class="navbar-center d-none d-lg-flex">
-            <img src="img/logo4.png" class="logo" alt="logo" />
-          </div>
-
-          <!-- BOTÓN HAMBURGUESA -->
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#menu"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <!-- MENÚ -->
-          <div class="collapse navbar-collapse" id="menu">
-
-            <!-- LINKS -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-              <li class="nav-item">
-                <a href="./index.html" class="menus nav-link">
-                  <i class="fa-solid fa-house"></i> Home
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="./login.html" class="menus nav-link">
-                  <i class="fa-solid fa-right-to-bracket"></i> Loguear
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="./register.html" class="menus nav-link">
-                  <i class="fa-solid fa-user-plus"></i> Registrarse
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="./contacto.html" class="menus nav-link">
-                  <i class="fa-solid fa-envelope"></i> Contacto
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="./carrito.html" class="menus nav-link">
-                  <i class="fa-solid fa-cart-shopping"></i> Carrito
-                </a>
-              </li>
-
-            </ul>
-
-            <!-- BUSCADOR -->
-            <form
-              action="./search-results.html"
-              method="get"
-              class="search-form d-flex"
-            >
-              <div class="search-wrapper">
-                <input
-                  type="text"
-                  placeholder="¿Qué estás buscando?"
-                  name="buscar"
-                  class="search-input"
-                />
-                <button type="submit" class="search-btn">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-              </div>
-            </form>
-
-          </div>
-        </div>
-      </nav>
-    </header>
+    <div data-include="header"></div>
 
     <!-- ===================== MAIN ===================== -->
     <h2 class="speek-title_center">Tu carrito</h2>
@@ -120,28 +36,8 @@
 
     <!-- ===================== FOOTER ===================== -->
 
-    <footer class="footer-custom">
-
-      <div class="footer-content container">
-        <div class="logo_final">
-          <img src="./img/logo2.png" alt="LOGO" class="footer-logo" />
-          <p class="footer-text">
-            Todos los derechos reservados para allá 👉 y los izquierdos hacia el otro lado.
-          </p>
-
-        </div>
-
-       
-
-        <nav>
-          <ul class="footer-nav">
-            <li><a href="./index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="./login.html"><i class="fa-solid fa-right-to-bracket"></i> Loguear</a></li>
-            <li><a href="./register.html"><i class="fa-solid fa-user-plus"></i> Registrarse</a></li>
-            <li><a href="./contacto.html"><i class="fa-solid fa-envelope"></i> Contacto</a></li>
-          </ul>
-        </nav>
-      </div>
+    <div data-include="footer"></div>
+    <script src="./js/includes.js"></script>
 </footer>
 
     <script

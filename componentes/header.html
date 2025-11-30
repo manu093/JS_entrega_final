@@ -1,0 +1,52 @@
+<!-- HEADER GLOBAL (se carga en cada página automáticamente) -->
+<!-- ============================================================
+🟣 HEADER — Navegación principal del sitio
+Mantiene:
+- Logo mobile + logo centrado desktop
+- Menú responsive con hamburguesa
+- Buscador integrado en la barra
+- Carrito
+- Área dinámica para usuario (login/register o perfil)
+============================================================ -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+      <div class="container">
+  
+        <!-- LOGO PARA MOBILE -->
+        <a class="navbar-brand d-lg-none" href="./index.html">
+          <img src="img/logo4.png" class="logo" alt="logo" />
+        </a>
+  
+        <!-- LOGO SOLO EN DESKTOP (CENTRADO) -->
+        <div class="navbar-center d-none d-lg-flex">
+          <img src="img/logo4.png" class="logo" alt="logo" />
+        </div>
+  
+        <!-- BOTÓN HAMBURGUESA -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <!-- MENÚ -->
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a href="./index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+  
+            <form action="./search-results.html" method="get" class="search-form d-flex">
+              <div class="search-wrapper">
+                <input type="text" name="buscar" placeholder="¿Qué estás buscando?" class="search-input" />
+                <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+              </div>
+            </form>
+  
+            <li class="nav-item"><a href="./carrito.html" class="nav-link"><i class="fa-solid fa-cart-shopping"></i> Carrito</a></li>
+          </ul>
+  
+          <!-- Aquí luego se insertará el botón de login/register dinámico -->
+          <div id="usuario-navbar"></div>
+  
+        </div>
+      </div>
+    </nav>
+  </header>
+  

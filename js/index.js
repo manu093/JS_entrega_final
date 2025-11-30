@@ -29,9 +29,13 @@ function detectarPagina() {
     if (url.includes("detalle.html")) {
         cargarDetalle();
     }
+    
 
     if (url.includes("carrito.html")) {
         mostrarCarrito();
+    }
+    if (url.includes("search-results.html")) {
+        cargarResultados();
     }
 }
 
@@ -49,9 +53,7 @@ async function cargarProductos() {
                 <img src="${prod.image}" alt="${prod.title}">
                 <p>${prod.desc}</p>
                 <h3>$${prod.price}</h3>
-
-                <a href="./detalle.html?id=${prod.id}" class="info">Más info</a>
-
+                <a href="./detalle.html?id=${prod.id}" class="info">Más info</a>    
                 <button class="compra" onclick="agregarAlCarrito(${prod.id})">
                     Comprar
                 </button>
@@ -133,7 +135,7 @@ function mostrarCarrito() {
     const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     if (carrito.length === 0) {
-        cont.innerHTML = "<p>Carrito vacío.</p>";
+        cont.innerHTML = `<p class="carrito-total">Carrito vacío.</p>`;
         totalBox.textContent = "";
         return;
     }
@@ -232,4 +234,228 @@ function mostrarToast(mensaje) {
     toast.classList.add("show");
 
     setTimeout(() => toast.classList.remove("show"), 2000);
+}
+
+
+/* ============================================================
+   🔎 BUSCADOR — Mostrar resultados
+   ============================================================ */
+   function cargarResultados() {
+    const cont = document.querySelector("#resultados-container");
+    if (!cont) return; // No estoy en search-results.html
+
+    const params = new URLSearchParams(window.location.search);
+    const busqueda = params.get("buscar")?.toLowerCase() || "";
+
+    fetch("./data/productos.json")
+    .then(res => res.json())
+    .then(data => {
+
+        const resultados = data.filter(p =>
+            p.title.toLowerCase().includes(busqueda) ||
+            p.desc.toLowerCase().includes(busqueda)
+        );
+
+        if (resultados.length === 0) {
+            cont.innerHTML = `<p>No hay resultados para "<strong>${busqueda}</strong>".</p>`;
+            return;
+        }
+
+        cont.innerHTML = "";
+
+        resultados.forEach(prod => {
+            cont.innerHTML += `
+                <article class="carrito-item">
+                    <h2>${prod.title}</h2>
+                    <img src="${prod.image}" alt="${prod.title}">
+                    <p>${prod.desc}</p>
+                    <h3>$${prod.price}</h3>
+
+                    <a href="./detalle.html?id=${prod.id}" class="info">Más info</a>
+                    <button class="compra" onclick="agregarAlCarrito(${prod.id})">Comprar</button>
+                </article>
+            `;
+        });
+    });
+}
+
+
+//  Logueo y register
+
+/* ============================================================
+   SISTEMA DE LOGIN / REGISTER (localStorage)
+   ============================================================ */
+
+/* ============= REGISTRAR ============= */
+function registrarUsuario() {
+    const nombre = document.getElementById("reg-nombre").value.trim();
+    const email = document.getElementById("reg-email").value.trim();
+    const pass = document.getElementById("reg-pass").value.trim();
+
+    if (!nombre || !email || !pass) {
+        mostrarError("Todos los campos son obligatorios");
+        return;
+    }
+
+    const usuario = { nombre, email, pass };
+
+    // Guardamos usuario
+    localStorage.setItem("usuario_registrado", JSON.stringify(usuario));
+
+    mostrarExito("Cuenta creada ✔");
+
+    setTimeout(() => {
+        window.location.href = "./login.html";
+    }, 1500);
+}
+
+/* ============= LOGIN ============= */
+function loginUsuario() {
+    const email = document.getElementById("login-email").value.trim();
+    const pass = document.getElementById("login-pass").value.trim();
+
+    const registrado = JSON.parse(localStorage.getItem("usuario_registrado"));
+
+    if (!registrado) {
+        mostrarError("No hay usuarios registrados.");
+        return;
+    }
+
+    if (registrado.email !== email || registrado.pass !== pass) {
+        mostrarError("Datos incorrectos ❌");
+        return;
+    }
+
+    // Guardamos el usuario logueado
+    localStorage.setItem("usuario_logueado", registrado.nombre);
+
+    mostrarExito("Bienvenido/a " + registrado.nombre + " 🍫");
+
+    setTimeout(() => {
+        window.location.href = "./index.html";
+    }, 1500);
+}
+
+/* ============= CERRAR SESIÓN ============= */
+function logout() {
+    localStorage.removeItem("usuario_logueado");
+    window.location.href = "./index.html";
+}
+
+/* ============= Mostrar usuario en navbar ============= */
+document.addEventListener("DOMContentLoaded", () => {
+    const user = localStorage.getItem("usuario_logueado");
+    const userBox = document.getElementById("usuario-navbar");
+
+    if (userBox) {
+        if (user) {
+            userBox.innerHTML = `
+                <span class="nav-user">Hola, ${user} 🍫</span>
+                <button onclick="logout()" class="logout-btn">Salir</button>
+            `;
+        } else {
+            userBox.innerHTML = `
+               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <a href="./login.html" class="menus nav-link">
+                    <i class="fa-solid fa-right-to-bracket"></i> Loguear
+                </a>
+                <a href="./register.html" class="menus nav-link">
+                    <i class="fa-solid fa-user-plus"></i> Registrarse
+                </a>
+              </ul>
+            `;
+        }
+    }
+});
+
+
+/* ============================================================
+   TOASTS — errores y éxitos
+   ============================================================ */
+
+function mostrarError(msg) {
+    showToast(msg, "error");
+}
+
+function mostrarExito(msg) {
+    showToast(msg, "ok");
+}
+
+function showToast(msg, tipo) {
+    const toast = document.createElement("div");
+
+    toast.className = "toast-auth " + tipo;
+    toast.textContent = msg;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.classList.add("show"), 50);
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 300);
+    }, 2000);
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    actualizarContadorCarrito();
+    detectarPagina();
+    actualizarNavbarUsuario();
+});
+
+/* ============================================================
+   🟣 CONTROL DEL LOGIN / ESTADO DEL USUARIO
+   ============================================================ */
+function actualizarNavbarUsuario() {
+    const user = JSON.parse(localStorage.getItem("usuario"));
+    const div = document.getElementById("usuario-navbar");
+
+    const loginLink = document.getElementById("nav-login");
+    const registerLink = document.getElementById("nav-register");
+
+    if (!div) return;
+
+    if (user) {
+        // Ocultar login y registro
+        loginLink.style.display = "none";
+        registerLink.style.display = "none";
+
+        // Mostrar usuario y logout
+        div.innerHTML = `
+            <span class="navbar-usuario">
+                <i class="fa-solid fa-user"></i> Hola, ${user.nombre}
+            </span>
+            <button class="btn btn-sm btn-outline-light ms-3" onclick="cerrarSesion()">
+                Cerrar sesión
+            </button>
+        `;
+    } else {
+        // Mostrar login/registro
+        loginLink.style.display = "block";
+        registerLink.style.display = "block";
+        div.innerHTML = ""; // No mostrar nada más
+    }
+}
+
+function cerrarSesion() {
+    localStorage.removeItem("usuario");
+    location.reload(); // refresca la página
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    incluirPartes();
+});
+
+function incluirPartes() {
+    document.querySelectorAll("[data-include]").forEach(async el => {
+        const archivo = `./componentes/${el.getAttribute("data-include")}.html`;
+
+        try {
+            const respuesta = await fetch(archivo);
+            el.innerHTML = await respuesta.text();
+        } catch (err) {
+            el.innerHTML = "<p>Error al cargar componente</p>";
+        }
+    });
 }

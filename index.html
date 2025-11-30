@@ -23,21 +23,29 @@
   </head>
 
   <body>
-    <!-- ===================== HEADER ===================== -->
+    <!-- ============================================================
+     🟣 HEADER — Navegación principal del sitio
+     Mantiene:
+     - Logo mobile + logo centrado desktop
+     - Menú responsive con hamburguesa
+     - Buscador integrado en la barra
+     - Carrito
+     - Área dinámica para usuario (login/register o perfil)
+   ============================================================ -->
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
         <div class="container">
-          <!-- LOGO PARA MOBILE -->
-          <a class="navbar-brand d-lg-none" href="#">
-            <img src="img/logo4.png" class="logo" alt="logo" />
+          <!-- ================= LOGO PARA MOBILE ================= -->
+          <a class="navbar-brand d-lg-none" href="index.html">
+            <img src="img/logo4.png" class="logo" alt="Logo Pepito" />
           </a>
 
-          <!-- LOGO SOLO EN DESKTOP (CENTRADO) -->
+          <!-- ================= LOGO CENTRADO EN DESKTOP ================= -->
           <div class="navbar-center d-none d-lg-flex">
-            <img src="img/logo4.png" class="logo" alt="logo" />
+            <img src="img/logo4.png" class="logo" alt="Logo Pepito" />
           </div>
 
-          <!-- BOTÓN HAMBURGUESA -->
+          <!-- ================= BOTÓN HAMBURGUESA ================= -->
           <button
             class="navbar-toggler"
             type="button"
@@ -47,34 +55,37 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <!-- MENÚ -->
+          <!-- ================= MENÚ PRINCIPAL ================= -->
           <div class="collapse navbar-collapse" id="menu">
-            <!-- LINKS -->
+            <!-- ========= LINKS NAVEGACIÓN ========= -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <!-- HOME -->
               <li class="nav-item">
-                <a href="#" class="menus nav-link">
+                <a href="./index.html" class="menus nav-link">
                   <i class="fa-solid fa-house"></i> Home
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a href="./login.html" class="menus nav-link">
-                  <i class="fa-solid fa-right-to-bracket"></i> Loguear
-                </a>
-              </li>
+              <!-- ================= BUSCADOR ================= -->
+              <form
+                action="./search-results.html"
+                method="get"
+                class="search-form d-flex"
+              >
+                <div class="search-wrapper">
+                  <input
+                    type="text"
+                    placeholder="¿Qué estás buscando?"
+                    name="buscar"
+                    class="search-input"
+                  />
+                  <button type="submit" class="search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                </div>
+              </form>
 
-              <li class="nav-item">
-                <a href="./register.html" class="menus nav-link">
-                  <i class="fa-solid fa-user-plus"></i> Registrarse
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="./contacto.html" class="menus nav-link">
-                  <i class="fa-solid fa-envelope"></i> Contacto
-                </a>
-              </li>
-
+              <!-- CARRITO -->
               <li class="nav-item">
                 <a href="./carrito.html" class="menus nav-link">
                   <i class="fa-solid fa-cart-shopping"></i> Carrito
@@ -82,26 +93,16 @@
               </li>
             </ul>
 
-            <!-- BUSCADOR -->
-            <form
-              action="./search-results.html"
-              method="get"
-              class="search-form d-flex"
-            >
-              <div class="search-wrapper">
-                <input
-                  type="text"
-                  placeholder="¿Qué estás buscando?"
-                  name="buscar"
-                  class="search-input"
-                />
-                <button type="submit" class="search-btn">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-              </div>
-            </form>
+            <!-- ==================================================
+               🔐 ÁREA DE USUARIO (se completa por JS):
+               - Si NO está logueado: Loguear + Registrarse
+               - Si está logueado: usuario + cerrar sesión
+             ================================================== -->
+            <div id="usuario-navbar"></div>
           </div>
+          <!-- FIN MENÚ -->
         </div>
+        <!-- FIN CONTAINER -->
       </nav>
     </header>
 
@@ -146,9 +147,9 @@
       <p><br /><br /><br /><br /></p>
 
       <!-- -------- PRODUCTOS -------- -->
-<!-- -------- PRODUCTOS -------- -->
-<h2 class="speek-title_center">Nuestros productos</h2>
-<section id="productos-container" class="section-producto"></section>
+      <!-- -------- PRODUCTOS -------- -->
+      <h2 class="speek-title_center">Nuestros productos</h2>
+      <section id="productos-container" class="section-producto"></section>
 
       <p><br /><br /><br /><br /><br /><br /></p>
       <p><br /><br /><br /><br /><br /><br /></p>
@@ -246,16 +247,6 @@
           <ul class="footer-nav">
             <li>
               <a href="#"><i class="fa-solid fa-house"></i> Home</a>
-            </li>
-            <li>
-              <a href="./login.html"
-                ><i class="fa-solid fa-right-to-bracket"></i> Loguear</a
-              >
-            </li>
-            <li>
-              <a href="./register.html"
-                ><i class="fa-solid fa-user-plus"></i> Registrarse</a
-              >
             </li>
             <li>
               <a href="./contacto.html"

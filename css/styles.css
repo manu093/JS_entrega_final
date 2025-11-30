@@ -279,6 +279,7 @@ main {
     border-radius: 8px;
     padding: 10px;
     margin-top: 8px;
+    text-decoration: none;
     display: inline-flex;
 }
 
@@ -675,3 +676,277 @@ main {
 
     backdrop-filter: blur(3px);
 }
+
+
+/* ============================================================
+   🟣 CARRITO — VERSIÓN OPTIMIZADA PARA CELULAR
+   ============================================================ */
+   @media (max-width: 768px) {
+
+    /* Contenedor del item */
+    .carrito-item {
+        grid-template-columns: 80px 1fr;
+        grid-template-rows: auto auto auto auto;
+        gap: 10px;
+
+        max-width: 100%;
+        margin: 15px auto;
+        padding: 15px 12px;
+
+        border-radius: 16px;
+        background: rgba(255,255,255,0.06);
+    }
+
+    /* Imagen */
+    .carrito-item img {
+        width: 80px;
+        border-radius: 10px;
+        object-fit: contain;
+        justify-self: center;
+        margin: auto;
+    }
+
+    /* Título */
+    .carrito-item h3 {
+        font-size: 1.1rem;
+        text-align: left;
+        margin-top: 5px;
+    }
+
+    /* Precio */
+    .carrito-precio {
+        font-size: 1.1rem;
+        margin-top: -6px;
+        color: #ffbffd;
+    }
+
+    /* Controles de cantidad */
+    .carrito-controles {
+        grid-column: 1 / -1;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .btn-cantidad {
+        padding: 8px 12px;
+        font-size: 1rem;
+        border-radius: 10px;
+    }
+
+    /* Botón eliminar */
+    .carrito-eliminar {
+        grid-column: 1 / -1;
+        margin: 5px auto 0;
+        width: 55px;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* ============================================================
+   🟣 Ajuste del total
+   ============================================================ */
+@media (max-width: 768px) {
+    .carrito-total {
+        text-align: center;
+        font-size: 1.6rem;
+        padding: 15px;
+        margin-top: 30px;
+    }
+}
+
+
+/* ===============================
+   LOGIN / REGISTER FORMS
+   =============================== */
+   .auth-box {
+    max-width: 420px;
+    margin: 60px auto;
+    padding: 30px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 18px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.2);
+    color: #ffd8ff;
+    text-align: center;
+}
+
+.auth-box h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ff66ff;
+    text-shadow: 0 0 15px #ff40ff;
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #a700ff;
+    color: white;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.auth-btn:hover {
+    background: #cc00ff;
+}
+
+/* ===============================
+   TOASTS LOGIN
+   =============================== */
+.toast-auth {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    opacity: 0;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: white;
+    z-index: 999999;
+    transition: .3s ease;
+}
+
+.toast-auth.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast-auth.ok {
+    background: #4caf50;
+    box-shadow: 0 0 12px #4caf50;
+}
+
+.toast-auth.error {
+    background: #e53935;
+    box-shadow: 0 0 12px #e53935;
+}
+
+/* ===============================
+   NAVBAR USER
+   =============================== */
+.nav-user {
+    color: #ffb7ff;
+    margin-right: 10px;
+}
+
+.logout-btn {
+    border: none;
+    background: #ff3b8a;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/******************************
+ **  CONTACTO — ESTILOS      **
+ ******************************/
+
+ .contacto-wrapper {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+  
+  .contacto-descrip {
+    text-align: center;
+    color: #eecbff;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  /* === INFO BOXES === */
+  .contacto-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+  }
+  
+  .info-box {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 20px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 0 12px rgba(255, 0, 255, 0.1);
+    transition: 0.3s;
+  }
+  
+  .info-box i {
+    font-size: 2rem;
+    color: #ffb6ff;
+    margin-bottom: 10px;
+  }
+  
+  .info-box h3 {
+    color: #ffdfff;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+  }
+  
+  .info-box p {
+    color: #e4c9ff;
+    font-size: 1rem;
+  }
+  
+  .info-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 18px rgba(255, 0, 255, 0.3);
+  }
+  
+  /* === FORMULARIO === */
+  .contacto-form {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 0 18px rgba(255, 0, 255, 0.15);
+  }
+  
+  .contacto-form h3 {
+    color: #ffcbff;
+    margin-bottom: 15px;
+  }
+  
+  .contacto-form input,
+  .contacto-form textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: #3b004e;
+    color: #fff;
+  }
+  
+  .contacto-form input::placeholder,
+  .contacto-form textarea::placeholder {
+    color: #ddc0ff;
+  }
+  
+  .enviar-form {
+    width: 100%;
+    margin-top: 8px;
+    background-color: #4a0072;
+  }
+  
+  .enviar-form:hover {
+    background-color: #8d00c6;
+  }
+  
