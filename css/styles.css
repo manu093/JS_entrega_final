@@ -138,7 +138,7 @@ main {
  **     SECCIÓN PRESENTACIÓN / SPEEK     **
  *****************************************/
 .speek-choco {
-    max-width: 90%;
+    max-width: 100%;
     margin: 0 auto;
     padding: 9px 3px;
     display: grid;
@@ -186,8 +186,13 @@ main {
 }
 
 @media (max-width: 768px) {
+    
     .speek-title { font-size: 2rem; }
     .speek-text { font-size: 1rem; }
+    .speek-title_center{text-align: center;}
+    main {
+        padding: 10px;
+    }
 }
 
 /*****************************************
