@@ -35,6 +35,10 @@ Se agragaron cosas en base a investigacion, como el login con datos de localstor
 tambien como queria usar mis propios productos, simule consumo de api con elementos locales.
 Para el formato de documentacion de codigo, me guie un poco con IA.
 
+
+Intente de que todo lo que está en la pagina sea funcional
+
+
 📄 Licencia
 
 Este proyecto está publicado bajo la licencia MIT.
